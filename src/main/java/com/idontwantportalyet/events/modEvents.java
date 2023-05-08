@@ -12,22 +12,25 @@ import net.minecraftforge.server.command.ConfigCommand;
 
 @Mod.EventBusSubscriber(modid = IDontWantPortalYet.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class modEvents {
-    public static Boolean isPortalEnabled = Boolean.valueOf(commonConfig.SPEC.get("Is portal enabled"));
+    public static Boolean isPortalEnabled;
+
+
     @SubscribeEvent
     public static void deletePortal(BlockEvent.PortalSpawnEvent event){
-      if(isPortalEnabled == false){
-          event.setCanceled(true);
-          System.out.println(Boolean.valueOf(commonConfig.SPEC.get("Is portal enabled")));
-      }
-
-    }
-    @SubscribeEvent
-    public static void returnPortal(BlockEvent.PortalSpawnEvent event){
-        if(isPortalEnabled == true) {
-            event.setCanceled(false);
-            System.out.println(Boolean.valueOf(commonConfig.SPEC.get("Is portal enabled")));
+        if(!commonConfig.isPortalEnabled.get()){
+            event.setCanceled(true);
+            System.out.println(commonConfig.isPortalEnabled.get());
         }
     }
+
+    @SubscribeEvent
+    public static void returnPortal(BlockEvent.PortalSpawnEvent event){
+        if(commonConfig.isPortalEnabled.get()) {
+            event.setCanceled(false);
+            System.out.println(commonConfig.isPortalEnabled.get());
+        }
+    }
+
 
     @SubscribeEvent
     public static void onCommandRegister(RegisterCommandsEvent event){

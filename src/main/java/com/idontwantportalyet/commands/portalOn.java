@@ -14,7 +14,6 @@ public class portalOn {
     public portalOn(CommandDispatcher<CommandSourceStack> dispatcher){
         dispatcher.register(Commands.literal("portal").then(Commands.literal("enabled")
                 .then(Commands.argument("state", BoolArgumentType.bool()).executes((command) -> {
-                    modEvents.isPortalEnabled = (BoolArgumentType.getBool(command, "state"));
                     commonConfig.isPortalEnabled.set(BoolArgumentType.getBool(command, "state"));
                     commonConfig.SPEC.save();
                     return isEnabled(command.getSource());
@@ -23,7 +22,7 @@ public class portalOn {
     }
 
     private int isEnabled(CommandSourceStack source) throws CommandSyntaxException {
-        if(modEvents.isPortalEnabled == true){
+        if(Boolean.valueOf(String.valueOf(commonConfig.isPortalEnabled)) == true){
             return 1;
         }else{
             return 0;
