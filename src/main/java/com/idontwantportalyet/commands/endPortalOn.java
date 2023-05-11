@@ -10,11 +10,11 @@ import com.sun.jdi.connect.Connector;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 
-public class portalOn {
-    public portalOn(CommandDispatcher<CommandSourceStack> dispatcher){
-        dispatcher.register(Commands.literal("portal").then(Commands.literal("nether").then(Commands.literal("enabled")
+public class endPortalOn {
+    public endPortalOn(CommandDispatcher<CommandSourceStack> dispatcher){
+        dispatcher.register(Commands.literal("portal").then(Commands.literal("end").then(Commands.literal("enabled")
                 .then(Commands.argument("state", BoolArgumentType.bool()).executes((command) -> {
-                    commonConfig.isPortalEnabled.set(BoolArgumentType.getBool(command, "state"));
+                    commonConfig.isEndPortalEnabled.set(BoolArgumentType.getBool(command, "state"));
                     commonConfig.SPEC.save();
                     return isEnabled(command.getSource());
                 }))
@@ -22,7 +22,7 @@ public class portalOn {
     }
 
     private int isEnabled(CommandSourceStack source) throws CommandSyntaxException {
-        if(Boolean.valueOf(String.valueOf(commonConfig.isPortalEnabled)) == true){
+        if(Boolean.valueOf(String.valueOf(commonConfig.isEndPortalEnabled)) == true){
             return 1;
         }else{
             return 0;
