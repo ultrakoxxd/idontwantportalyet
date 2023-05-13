@@ -2,7 +2,6 @@ package com.idontwantportalyet.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
-import com.idontwantportalyet.events.modEvents;
 
 public class commonConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();

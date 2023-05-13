@@ -1,18 +1,17 @@
 package com.idontwantportalyet.commands;
 
-import com.idontwantportalyet.events.modEvents;
 import com.idontwantportalyet.config.commonConfig;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.sun.jdi.connect.Connector;
+import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 
 public class endPortalOn {
     public endPortalOn(CommandDispatcher<CommandSourceStack> dispatcher){
-        dispatcher.register(Commands.literal("portal").then(Commands.literal("end").then(Commands.literal("enabled")
+        dispatcher.register(Commands.literal("portal").requires((source) -> source.hasPermission(2)).then(Commands.literal("end").then(Commands.literal("enabled")
                 .then(Commands.argument("state", BoolArgumentType.bool()).executes((command) -> {
                     commonConfig.isEndPortalEnabled.set(BoolArgumentType.getBool(command, "state"));
                     commonConfig.SPEC.save();
