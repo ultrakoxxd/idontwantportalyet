@@ -2,6 +2,7 @@ package com.idontwantportalyet;
 
 import com.idontwantportalyet.config.*;
 
+import com.idontwantportalyet.dependencies.deeperdarker.events.ddEvents;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
@@ -19,6 +20,7 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -66,7 +68,10 @@ public class IDontWantPortalYet {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, clientConfig.SPEC, "IDontWantPortalYet-client.toml");
+        if(ModList.get().isLoaded("deeperdarker")){
+          MinecraftForge.EVENT_BUS.register(ddEvents.class);
+        }
+
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, commonConfig.SPEC, "IDontWantPortalYet-common.toml");
     }
 

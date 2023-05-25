@@ -1,4 +1,4 @@
-package com.idontwantportalyet.commands;
+package com.idontwantportalyet.dependencies.deeperdarker.commands;
 
 import com.idontwantportalyet.config.commonConfig;
 import com.mojang.brigadier.CommandDispatcher;
@@ -9,7 +9,7 @@ import net.minecraft.commands.Commands;
 
 public class othersidePortalOn {
     public othersidePortalOn(CommandDispatcher<CommandSourceStack> dispatcher){
-        dispatcher.register(Commands.literal("portal").requires((source) -> source.hasPermission(2)).then(Commands.literal("end").then(Commands.literal("enabled")
+        dispatcher.register(Commands.literal("portal").requires((source) -> source.hasPermission(2)).then(Commands.literal("otherside").then(Commands.literal("enabled")
                 .then(Commands.argument("state", BoolArgumentType.bool()).executes((command) -> {
                     commonConfig.isOthersidePortalEnabled.set(BoolArgumentType.getBool(command, "state"));
                     commonConfig.SPEC.save();
