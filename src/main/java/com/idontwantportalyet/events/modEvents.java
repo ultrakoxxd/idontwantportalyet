@@ -1,10 +1,12 @@
 package com.idontwantportalyet.events;
 
 import com.idontwantportalyet.commands.endPortalOn;
+import com.idontwantportalyet.commands.othersidePortalOn;
 import com.idontwantportalyet.config.commonConfig;
 
 import com.idontwantportalyet.IDontWantPortalYet;
 import com.idontwantportalyet.commands.portalOn;
+import com.kyanite.deeperdarker.forge.OthersidePortalBlock;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -19,6 +21,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
+import com.kyanite.deeperdarker.DeeperAndDarker;
+
 @Mod.EventBusSubscriber(modid = IDontWantPortalYet.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class modEvents {
     public static Boolean isPortalEnabled;
@@ -28,10 +32,10 @@ public class modEvents {
     public static void deletePortal(BlockEvent.PortalSpawnEvent event){
         if(!commonConfig.isPortalEnabled.get()){
             event.setCanceled(true);
-            System.out.println("portal enabled?" + commonConfig.isPortalEnabled.get());
+            System.out.println("Nether portal is disabled");
         } else  if(commonConfig.isPortalEnabled.get()) {
             event.setCanceled(false);
-            System.out.println("portal enabled?" + commonConfig.isPortalEnabled.get());
+            System.out.println("Nether portal is enabled");
         }
     }
     @SubscribeEvent
@@ -53,12 +57,22 @@ public class modEvents {
        }
     }
 
+    public static void deleteOthersidePortal(OthersidePortalBlock.PortalSpawnEvent event){
+        if(!commonConfig.isOthersidePortalEnabled.get()){
+            event.setCanceled(true);
+            System.out.println("Otherside portal is disabled");
+        } else if (commonConfig.isOthersidePortalEnabled.get()) {
+            event.setCanceled(false);
+            System.out.println("Otherside portal is enabled");
+        }
+    }
 
 
     @SubscribeEvent
     public static void onCommandRegister(RegisterCommandsEvent event){
         new portalOn(event.getDispatcher());
         new endPortalOn(event.getDispatcher());
+        new othersidePortalOn(event.getDispatcher());
 
         ConfigCommand.register(event.getDispatcher());
     }
