@@ -39,6 +39,8 @@ public class IDontWantPortalYet {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+        MinecraftForge.EVENT_BUS.register(RegisterCommandsEvent.class);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, common.SPEC, "IDontWantPortalYet-common.toml");
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -46,8 +48,6 @@ public class IDontWantPortalYet {
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
 
-        MinecraftForge.EVENT_BUS.register(RegisterCommandsEvent.class);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, common.SPEC, "IDontWantPortalYet-common.toml");
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

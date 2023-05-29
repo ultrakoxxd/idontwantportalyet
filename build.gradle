@@ -5,7 +5,7 @@ plugins {
 
 
 group = 'com.ultrakox'
-version = '1.0'
+version = '1.18.2-1.0'
 
 java {
     archivesBaseName = 'idontwantportalyet'
