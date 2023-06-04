@@ -3,6 +3,7 @@ package com.idontwantportalyet;
 import com.idontwantportalyet.config.*;
 
 import com.idontwantportalyet.dependencies.deeperdarker.events.ddEvents;
+import com.idontwantportalyet.dependencies.twilightforest.events.tfEvents;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
@@ -70,6 +71,9 @@ public class IDontWantPortalYet {
         MinecraftForge.EVENT_BUS.register(this);
         if(ModList.get().isLoaded("deeperdarker")){
           MinecraftForge.EVENT_BUS.register(ddEvents.class);
+        }
+        if(ModList.get().isLoaded("twilightforest")){
+            MinecraftForge.EVENT_BUS.register(tfEvents.class);
         }
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, commonConfig.SPEC, "IDontWantPortalYet-common.toml");

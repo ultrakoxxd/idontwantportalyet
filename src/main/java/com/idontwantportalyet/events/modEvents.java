@@ -6,6 +6,7 @@ import com.idontwantportalyet.config.commonConfig;
 
 import com.idontwantportalyet.IDontWantPortalYet;
 import com.idontwantportalyet.commands.portalOn;
+import com.idontwantportalyet.dependencies.twilightforest.commands.tfPortalOn;
 import com.kyanite.deeperdarker.DeeperAndDarker;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.Items;
@@ -51,12 +52,12 @@ public class modEvents {
                    if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() == Items.ENDER_EYE) {
                        event.setCanceled(true);
                        LOGGER.info("End portal is disabled");
+                   } else if(commonConfig.isEndPortalEnabled.get()){
+                       event.setCanceled(false);
+                       LOGGER.info("End portal is enabled");
                    }
                }
            }
-       } else if(commonConfig.isEndPortalEnabled.get()){
-            event.setCanceled(false);
-            LOGGER.info("End portal is enabled");
        }
     }
 
@@ -68,6 +69,9 @@ public class modEvents {
         new endPortalOn(event.getDispatcher());
         if(ModList.get().isLoaded("deeperdarker")) {
             new othersidePortalOn(event.getDispatcher());
+        }
+        if(ModList.get().isLoaded("twilightforest")){
+            new tfPortalOn(event.getDispatcher());
         }
         ConfigCommand.register(event.getDispatcher());
     }

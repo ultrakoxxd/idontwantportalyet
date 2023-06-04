@@ -5,7 +5,7 @@ plugins {
 
 
 group = 'com'
-version = '1.4'
+version = '1.5'
 
 java {
     archivesBaseName = 'idontwantportalyet'
@@ -119,7 +119,8 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     maven{
         url "https://www.cursemaven.com"
-    }
+        }
+
 
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
@@ -128,6 +129,7 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
+    maven { url = "https://modmaven.dev/" }
 }
 
 dependencies {
@@ -149,6 +151,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     // runtimeOnly fg.deobf("curse.maven:ftbquests-289412:4530022")
     implementation fg.deobf("curse.maven:deeperanddarker-659011:4166676")
+    implementation fg.deobf("curse.maven:twilightforest-227639:4389567")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
