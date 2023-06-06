@@ -2,6 +2,7 @@ package com.ultrakox.idontwantportalyet;
 
 import com.mojang.logging.LogUtils;
 import com.ultrakox.idontwantportalyet.config.common;
+import com.ultrakox.idontwantportalyet.dependencies.TF.events.TFEvents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -9,6 +10,7 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -41,6 +43,9 @@ public class IDontWantPortalYet {
 
         MinecraftForge.EVENT_BUS.register(RegisterCommandsEvent.class);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, common.SPEC, "IDontWantPortalYet-common.toml");
+        if(ModList.get().isLoaded("twilightforest")){
+            MinecraftForge.EVENT_BUS.register(TFEvents.class);
+        }
     }
 
     private void setup(final FMLCommonSetupEvent event) {

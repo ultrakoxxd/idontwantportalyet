@@ -8,7 +8,7 @@ public class common {
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> isPortalEnabled;
     public static final ForgeConfigSpec.ConfigValue<Boolean> isEndPortalEnabled;
-
+    public static final ForgeConfigSpec.ConfigValue<Boolean> isTFPortalEnabled;
 
 
 
@@ -16,6 +16,9 @@ public class common {
         BUILDER.push("Configs");
         isPortalEnabled = BUILDER.comment().define("Is portal enabled", true);
         isEndPortalEnabled = BUILDER.comment().define("Is End portal enabled", true);
+        BUILDER.push("Mods portals configs");
+        isTFPortalEnabled = BUILDER.comment().define("Is Twilight portal enabled", true);
+
 
         BUILDER.pop();
         SPEC = BUILDER.build();

@@ -5,7 +5,7 @@ plugins {
 
 
 group = 'com.ultrakox'
-version = '1.18.2-1.0'
+version = '1.18.2-1.1'
 
 java {
     archivesBaseName = 'idontwantportalyet'
@@ -117,6 +117,9 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    maven{
+        url "https://www.cursemaven.com"
+    }
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
 
@@ -143,6 +146,7 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+    implementation fg.deobf("curse.maven:twilightforest-227639:4337390")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

@@ -5,6 +5,7 @@ import com.ultrakox.idontwantportalyet.IDontWantPortalYet;
 import com.ultrakox.idontwantportalyet.commands.endPortalOn;
 import com.ultrakox.idontwantportalyet.commands.netherPortalOn;
 import com.ultrakox.idontwantportalyet.config.common;
+import com.ultrakox.idontwantportalyet.dependencies.TF.commands.TFportalOn;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
@@ -59,7 +60,9 @@ public class modEvents {
     public static void onCommandRegister(RegisterCommandsEvent event){
         new netherPortalOn(event.getDispatcher());
         new endPortalOn(event.getDispatcher());
-
+        if(ModList.get().isLoaded("twilightforest")){
+            new TFportalOn(event.getDispatcher());
+        }
         ConfigCommand.register(event.getDispatcher());
     }
 

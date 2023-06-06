@@ -56,3 +56,9 @@ description='''
    versionRange="[1.18.2,1.19)"
    ordering="NONE"
    side="BOTH"
+[[dependencies.idontwantportalyet]]
+   modId="twilightforest"
+   mandatory=false
+   versionRange="[4.1.1494,)"
+   ordering="AFTER"
+   side="BOTH"
