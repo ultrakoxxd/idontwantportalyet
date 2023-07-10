@@ -11,7 +11,8 @@ public class commonConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> isEndPortalEnabled;
     public static final ForgeConfigSpec.ConfigValue<Boolean> isOthersidePortalEnabled;
     public static final ForgeConfigSpec.ConfigValue<Boolean> isTFPortalEnabled;
-
+    public static final ForgeConfigSpec.ConfigValue<Boolean> isEverbrightPortalEnabled;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> isEverdawnPortalEnabled;
 
 
     static {
@@ -21,6 +22,8 @@ public class commonConfig {
         BUILDER.push("Mods portals configs");
         isOthersidePortalEnabled = BUILDER.comment().define("Is otherside portal enabled", true);
         isTFPortalEnabled = BUILDER.comment().define("Is Twilight portal enabled", true);
+        isEverbrightPortalEnabled = BUILDER.define("Is Everbright enabled", true);
+        isEverdawnPortalEnabled = BUILDER.define("Is Everdawn enabled", true);
 
         BUILDER.pop();
         SPEC = BUILDER.build();

@@ -5,7 +5,7 @@ plugins {
 
 
 group = 'com'
-version = '1.5'
+version = '1.6'
 
 java {
     archivesBaseName = 'idontwantportalyet'
@@ -152,6 +152,7 @@ dependencies {
     // runtimeOnly fg.deobf("curse.maven:ftbquests-289412:4530022")
     implementation fg.deobf("curse.maven:deeperanddarker-659011:4166676")
     implementation fg.deobf("curse.maven:twilightforest-227639:4389567")
+    implementation fg.deobf("curse.maven:bleskies-312918:3905041")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

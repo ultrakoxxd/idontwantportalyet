@@ -1,6 +1,8 @@
 package com.idontwantportalyet.events;
 
 import com.idontwantportalyet.commands.endPortalOn;
+import com.idontwantportalyet.dependencies.blueskies.commands.ebPortalOn;
+import com.idontwantportalyet.dependencies.blueskies.commands.edPortalOn;
 import com.idontwantportalyet.dependencies.deeperdarker.commands.othersidePortalOn;
 import com.idontwantportalyet.config.commonConfig;
 
@@ -72,6 +74,10 @@ public class modEvents {
         }
         if(ModList.get().isLoaded("twilightforest")){
             new tfPortalOn(event.getDispatcher());
+        }
+        if(ModList.get().isLoaded("blue_skies")){
+            new ebPortalOn(event.getDispatcher());
+            new edPortalOn(event.getDispatcher());
         }
         ConfigCommand.register(event.getDispatcher());
     }
