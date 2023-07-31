@@ -3,6 +3,7 @@ package com.idontwantportalyet;
 import com.idontwantportalyet.config.*;
 
 import com.idontwantportalyet.dependencies.deeperdarker.events.ddEvents;
+import com.idontwantportalyet.dependencies.drpg.events.drpgEvents;
 import com.idontwantportalyet.dependencies.twilightforest.events.tfEvents;
 import com.idontwantportalyet.dependencies.blueskies.events.bsEvents;
 
@@ -53,6 +54,9 @@ public class IDontWantPortalYet {
         }
         if (ModList.get().isLoaded("blue_skies")){
             MinecraftForge.EVENT_BUS.register(bsEvents.class);
+        }
+        if(ModList.get().isLoaded("divinerpg")){
+            MinecraftForge.EVENT_BUS.register(drpgEvents.class);
         }
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, commonConfig.SPEC, "IDontWantPortalYet-common.toml");

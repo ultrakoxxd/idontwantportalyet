@@ -19,7 +19,7 @@ public class ebPortalOn {
     }
 
     private int isEnabled(CommandSourceStack source) throws CommandSyntaxException {
-        if(Boolean.valueOf(String.valueOf(commonConfig.isEverbrightPortalEnabled)) == true){
+        if(Boolean.valueOf(String.valueOf(commonConfig.isEverbrightPortalEnabled))){
             return 1;
         }else{
             return 0;

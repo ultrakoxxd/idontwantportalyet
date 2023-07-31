@@ -19,7 +19,7 @@ public class othersidePortalOn {
     }
 
     private int isEnabled(CommandSourceStack source) throws CommandSyntaxException {
-        if(Boolean.valueOf(String.valueOf(commonConfig.isOthersidePortalEnabled)) == true){
+        if(Boolean.valueOf(String.valueOf(commonConfig.isOthersidePortalEnabled))){
             return 1;
         }else{
             return 0;

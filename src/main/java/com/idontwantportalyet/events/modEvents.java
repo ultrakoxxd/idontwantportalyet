@@ -8,6 +8,7 @@ import com.idontwantportalyet.config.commonConfig;
 
 import com.idontwantportalyet.IDontWantPortalYet;
 import com.idontwantportalyet.commands.portalOn;
+import com.idontwantportalyet.dependencies.drpg.commands.iceikaPortalOn;
 import com.idontwantportalyet.dependencies.twilightforest.commands.tfPortalOn;
 import com.kyanite.deeperdarker.DeeperAndDarker;
 import com.mojang.logging.LogUtils;
@@ -78,6 +79,9 @@ public class modEvents {
         if(ModList.get().isLoaded("blue_skies")){
             new ebPortalOn(event.getDispatcher());
             new edPortalOn(event.getDispatcher());
+        }
+        if(ModList.get().isLoaded("divinerpg")){
+            new iceikaPortalOn(event.getDispatcher());
         }
         ConfigCommand.register(event.getDispatcher());
     }

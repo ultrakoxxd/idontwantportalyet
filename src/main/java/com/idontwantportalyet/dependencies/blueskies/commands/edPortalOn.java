@@ -19,7 +19,7 @@ public class edPortalOn {
 }
 
     private int isEnabled(CommandSourceStack source) throws CommandSyntaxException {
-        if(Boolean.valueOf(String.valueOf(commonConfig.isEverdawnPortalEnabled)) == true){
+        if(Boolean.valueOf(String.valueOf(commonConfig.isEverdawnPortalEnabled))){
             return 1;
         }else{
             return 0;

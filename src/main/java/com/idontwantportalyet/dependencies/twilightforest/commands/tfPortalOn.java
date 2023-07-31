@@ -19,7 +19,7 @@ public class tfPortalOn {
     }
 
     private int isEnabled(CommandSourceStack source) throws CommandSyntaxException {
-        if(Boolean.valueOf(String.valueOf(commonConfig.isTFPortalEnabled)) == true){
+        if(Boolean.valueOf(String.valueOf(commonConfig.isTFPortalEnabled))){
             return 1;
         }else{
             return 0;

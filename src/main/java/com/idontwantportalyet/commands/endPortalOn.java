@@ -21,7 +21,7 @@ public class endPortalOn {
     }
 
     private int isEnabled(CommandSourceStack source) throws CommandSyntaxException {
-        if(Boolean.valueOf(String.valueOf(commonConfig.isEndPortalEnabled)) == true){
+        if(Boolean.valueOf(String.valueOf(commonConfig.isEndPortalEnabled))){
             return 1;
         }else{
             return 0;
