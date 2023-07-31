@@ -14,6 +14,7 @@ public class endPortalOn {
         dispatcher.register(Commands.literal("portal").requires((source) -> source.hasPermission(2)).then(Commands.literal("end").then(Commands.literal("enabled")
                 .then(Commands.argument("state", BoolArgumentType.bool()).executes((command) -> {
                     commonConfig.isEndPortalEnabled.set(BoolArgumentType.getBool(command, "state"));
+                    commonConfig.endPortalTimerInt.set(-1);
                     commonConfig.SPEC.save();
                     return isEnabled(command.getSource());
                 }))

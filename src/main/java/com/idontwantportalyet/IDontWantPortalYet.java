@@ -68,7 +68,6 @@ public class IDontWantPortalYet {
         LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
 
         MinecraftForge.EVENT_BUS.register(RegisterCommandsEvent.class);
-
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
