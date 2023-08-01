@@ -11,7 +11,6 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 
 public class endPortalTimer {
-    private static String MESSAGE;
     public endPortalTimer(CommandDispatcher<CommandSourceStack> dispatcher){
         dispatcher.register(Commands.literal("portaltimer").requires((source) -> source.hasPermission(2)).then(Commands.literal("end")
                 .then(Commands.argument("time", IntegerArgumentType.integer()).executes((command) -> {
@@ -19,7 +18,6 @@ public class endPortalTimer {
                     commonConfig.isEndPortalEnabled.set(false);
                     commonConfig.SPEC.save();
 
-                    CommandSourceStack sourceStack = command.getSource();
                     return commonConfig.endPortalTimerInt.get();
                 }))
         ));

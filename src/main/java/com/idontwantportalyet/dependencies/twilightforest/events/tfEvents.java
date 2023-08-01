@@ -5,6 +5,8 @@ import com.idontwantportalyet.config.commonConfig;
 
 import com.mojang.logging.LogUtils;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.TickEvent;
@@ -39,6 +41,24 @@ public class tfEvents {
                         player.level.setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                         LOGGER.debug("Twilight portal is disabled");
                     }
+                }
+            }
+        }
+    }
+    //
+    // TIMER
+    //
+    @SubscribeEvent
+    public static void onServerTick(TickEvent.ServerTickEvent event) {
+        //tf portal timer
+        if (event.phase == TickEvent.Phase.START && commonConfig.TFPortalTimerInt.get() >= 0) {
+            commonConfig.TFPortalTimerInt.set(commonConfig.TFPortalTimerInt.get() - 1);
+            LOGGER.debug(String.valueOf(commonConfig.TFPortalTimerInt.get()));
+            if (commonConfig.TFPortalTimerInt.get() == 0) {
+                commonConfig.isTFPortalEnabled.set(true);
+                LOGGER.debug("tf portal is now enabled!");
+                for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+                    player.sendSystemMessage(Component.literal(commonConfig.TFPortalTimerAfter.get()).withStyle(ChatFormatting.AQUA));
                 }
             }
         }

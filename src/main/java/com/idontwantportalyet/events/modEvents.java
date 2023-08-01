@@ -4,14 +4,18 @@ import com.idontwantportalyet.commands.endPortalOn;
 import com.idontwantportalyet.commands.endPortalTimer;
 import com.idontwantportalyet.commands.netherPortalTimer;
 import com.idontwantportalyet.dependencies.blueskies.commands.ebPortalOn;
+import com.idontwantportalyet.dependencies.blueskies.commands.ebPortalTimer;
 import com.idontwantportalyet.dependencies.blueskies.commands.edPortalOn;
+import com.idontwantportalyet.dependencies.blueskies.commands.edPortalTimer;
 import com.idontwantportalyet.dependencies.deeperdarker.commands.othersidePortalOn;
 import com.idontwantportalyet.config.commonConfig;
 
 import com.idontwantportalyet.IDontWantPortalYet;
 import com.idontwantportalyet.commands.portalOn;
-import com.idontwantportalyet.dependencies.drpg.commands.iceikaPortalOn;
+import com.idontwantportalyet.dependencies.deeperdarker.commands.othersidePortalTimer;
+import com.idontwantportalyet.dependencies.drpg.commands.*;
 import com.idontwantportalyet.dependencies.twilightforest.commands.tfPortalOn;
+import com.idontwantportalyet.dependencies.twilightforest.commands.tfPortalTimer;
 import com.kyanite.deeperdarker.DeeperAndDarker;
 import com.mojang.logging.LogUtils;
 import net.minecraft.ChatFormatting;
@@ -121,16 +125,43 @@ public class modEvents {
         new netherPortalTimer(event.getDispatcher());
         if(ModList.get().isLoaded("deeperdarker")) {
             new othersidePortalOn(event.getDispatcher());
+            new othersidePortalTimer(event.getDispatcher());
         }
         if(ModList.get().isLoaded("twilightforest")){
             new tfPortalOn(event.getDispatcher());
+            new tfPortalTimer(event.getDispatcher());
         }
         if(ModList.get().isLoaded("blue_skies")){
+           //everbright
             new ebPortalOn(event.getDispatcher());
+            new ebPortalTimer(event.getDispatcher());
+           //everdawn
             new edPortalOn(event.getDispatcher());
+            new edPortalTimer(event.getDispatcher());
         }
         if(ModList.get().isLoaded("divinerpg")){
+            //apalachia
+            new apalachiaPortalOn(event.getDispatcher());
+            new apalachiaPortalTimer(event.getDispatcher());
+            //eden
+            new edenPortalOn(event.getDispatcher());
+            new edenPortalTimer(event.getDispatcher());
+            //iceika
             new iceikaPortalOn(event.getDispatcher());
+            new iceikaPortalTimer(event.getDispatcher());
+            //mortum
+            new mortumPortalOn(event.getDispatcher());
+            new mortumPortalTimer(event.getDispatcher());
+            //skythern
+            new skythernPortalOn(event.getDispatcher());
+            new skythernPortalTimer(event.getDispatcher());
+            //vethea
+            new vetheaPortalOn(event.getDispatcher());
+            new vetheaPortalTimer(event.getDispatcher());
+            //wildwood
+            new wildwoodPortalOn(event.getDispatcher());
+            new wildwoodPortalTimer(event.getDispatcher());
+
         }
         ConfigCommand.register(event.getDispatcher());
     }
