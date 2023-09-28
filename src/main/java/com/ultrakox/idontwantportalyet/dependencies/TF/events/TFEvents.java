@@ -2,23 +2,11 @@ package com.ultrakox.idontwantportalyet.dependencies.TF.events;
 
 import com.mojang.logging.LogUtils;
 import com.ultrakox.idontwantportalyet.config.common;
-import net.minecraft.client.KeyMapping;
-import net.minecraft.client.multiplayer.PlayerInfo;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.network.ServerPlayerConnection;
-import net.minecraft.server.players.PlayerList;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.dimension.DimensionDefaults;
-import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraftforge.common.ForgeConfig;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.server.ServerMain;
 import org.slf4j.Logger;
 import twilightforest.block.TFBlocks;
 
@@ -46,6 +34,25 @@ public class TFEvents {
                         player.level.setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                         LOGGER.info("Twilight portal is disabled");
                     }
+                }
+            }
+        }
+    }
+
+    //
+    // TIMER
+    //
+    @SubscribeEvent
+    public static void onServerTick(TickEvent.WorldTickEvent event) {
+        //tf portal timer
+        if (event.phase == TickEvent.Phase.START && common.ugrPortalTimerInt.get() >= 0) {
+            common.ugrPortalTimerInt.set(common.ugrPortalTimerInt.get() - 1);
+            LOGGER.debug(String.valueOf(common.ugrPortalTimerInt.get()));
+            if (common.ugrPortalTimerInt.get() == 0) {
+                common.isTFPortalEnabled.set(true);
+                LOGGER.debug("tf portal is now enabled!");
+                for (Player player : event.world.players()) {
+                    player.sendMessage(Component.nullToEmpty(common.TFPortalTimerAfter.get()), player.getUUID());
                 }
             }
         }

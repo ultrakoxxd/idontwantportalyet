@@ -3,6 +3,8 @@ package com.ultrakox.idontwantportalyet;
 import com.mojang.logging.LogUtils;
 import com.ultrakox.idontwantportalyet.config.common;
 import com.ultrakox.idontwantportalyet.dependencies.TF.events.TFEvents;
+import com.ultrakox.idontwantportalyet.dependencies.blueskies.events.bsEvents;
+import com.ultrakox.idontwantportalyet.dependencies.undergarden.events.ugrEvents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,6 +47,12 @@ public class IDontWantPortalYet {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, common.SPEC, "IDontWantPortalYet-common.toml");
         if(ModList.get().isLoaded("twilightforest")){
             MinecraftForge.EVENT_BUS.register(TFEvents.class);
+        }
+        if (ModList.get().isLoaded("blue_skies")){
+            MinecraftForge.EVENT_BUS.register(bsEvents.class);
+        }
+        if (ModList.get().isLoaded("undergarden")){
+            MinecraftForge.EVENT_BUS.register(ugrEvents.class);
         }
     }
 

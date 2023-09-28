@@ -5,7 +5,7 @@ plugins {
 
 
 group = 'com.ultrakox'
-version = '1.18.2-1.1'
+version = '1.18.2-1.2'
 
 java {
     archivesBaseName = 'idontwantportalyet'
@@ -127,6 +127,7 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
+
 }
 
 dependencies {
@@ -147,6 +148,8 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     implementation fg.deobf("curse.maven:twilightforest-227639:4337390")
+    implementation fg.deobf("curse.maven:blueskies-312918:3788736")
+    implementation fg.deobf("curse.maven:undergarden-379849:3810810")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
