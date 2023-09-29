@@ -7,6 +7,7 @@ import com.idontwantportalyet.dependencies.drpg.events.drpgEvents;
 import com.idontwantportalyet.dependencies.twilightforest.events.tfEvents;
 import com.idontwantportalyet.dependencies.blueskies.events.bsEvents;
 
+import com.idontwantportalyet.dependencies.undergarden.events.ugrEvents;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.Blocks;
@@ -57,6 +58,9 @@ public class IDontWantPortalYet {
         }
         if(ModList.get().isLoaded("divinerpg")){
             MinecraftForge.EVENT_BUS.register(drpgEvents.class);
+        }
+        if(ModList.get().isLoaded("undergarden")){
+            MinecraftForge.EVENT_BUS.register(ugrEvents.class);
         }
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, commonConfig.SPEC, "IDontWantPortalYet-common.toml");

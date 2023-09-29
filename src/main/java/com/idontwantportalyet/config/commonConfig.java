@@ -63,6 +63,11 @@ public class commonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> vetheaPortalTimerInt;
     public static final ForgeConfigSpec.ConfigValue<String> vetheaPortalTimerAfter;
 
+    //undergarden
+    public static final ForgeConfigSpec.ConfigValue<Boolean> isUgrPortalEnabled;
+    public static final ForgeConfigSpec.ConfigValue<Integer> ugrPortalTimerInt;
+    public static final ForgeConfigSpec.ConfigValue<String> ugrPortalTimerAfter;
+
 
     static {
         BUILDER.push("Configs");
@@ -133,6 +138,11 @@ public class commonConfig {
         vetheaPortalTimerInt = BUILDER.comment().define("Time to enable Vethea portal", -1);
         vetheaPortalTimerAfter = BUILDER.comment().define("Message after timer for Vethea reach 0","Vethea portal is now enabled!");
 
+        BUILDER.comment("Undergarden");
+
+        isUgrPortalEnabled = BUILDER.define("Is Undergarden portal enabled", true);
+        ugrPortalTimerInt = BUILDER.define("Time to enable Undergarden portal", -1);
+        ugrPortalTimerAfter = BUILDER.define("Message after timer for Undergarden rach 0", "Undergarden portal is now enabled!");
 
         BUILDER.pop();
         SPEC = BUILDER.build();

@@ -14,7 +14,7 @@ public class othersidePortalTimer {
                     commonConfig.isOthersidePortalEnabled.set(false);
                     commonConfig.SPEC.save();
 
-                    return commonConfig.othersidePortalTimerInt.get();
+                    return commonConfig.ugrPortalTimerInt.get();
                 }))
         ));
     }

@@ -16,6 +16,8 @@ import com.idontwantportalyet.dependencies.deeperdarker.commands.othersidePortal
 import com.idontwantportalyet.dependencies.drpg.commands.*;
 import com.idontwantportalyet.dependencies.twilightforest.commands.tfPortalOn;
 import com.idontwantportalyet.dependencies.twilightforest.commands.tfPortalTimer;
+import com.idontwantportalyet.dependencies.undergarden.commands.ugrPortalOn;
+import com.idontwantportalyet.dependencies.undergarden.commands.ugrPortalTimer;
 import com.kyanite.deeperdarker.DeeperAndDarker;
 import com.mojang.logging.LogUtils;
 import net.minecraft.ChatFormatting;
@@ -162,6 +164,10 @@ public class modEvents {
             new wildwoodPortalOn(event.getDispatcher());
             new wildwoodPortalTimer(event.getDispatcher());
 
+        }
+        if(ModList.get().isLoaded("undergarden")){
+            new ugrPortalOn(event.getDispatcher());
+            new ugrPortalTimer(event.getDispatcher());
         }
         ConfigCommand.register(event.getDispatcher());
     }
