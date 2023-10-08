@@ -2,8 +2,10 @@ package com.ultrakox.idontwantportalyet;
 
 import com.mojang.logging.LogUtils;
 import com.ultrakox.idontwantportalyet.config.commonConfig;
+import com.ultrakox.idontwantportalyet.dependencies.deeperdarker.events.ddEvents;
 import com.ultrakox.idontwantportalyet.dependencies.drpg.events.drpgEvents;
 import com.ultrakox.idontwantportalyet.dependencies.tforest.events.tfEvents;
+import com.ultrakox.idontwantportalyet.dependencies.undergarden.events.ugrEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -55,6 +57,12 @@ public class IDontWantPortalYet {
         }
         if(ModList.get().isLoaded("divinerpg")){
             MinecraftForge.EVENT_BUS.register(drpgEvents.class);
+        }
+        if(ModList.get().isLoaded("deeperdarker")){
+            MinecraftForge.EVENT_BUS.register(ddEvents.class);
+        }
+        if(ModList.get().isLoaded("undergarden")){
+            MinecraftForge.EVENT_BUS.register(ugrEvents.class);
         }
     }
 

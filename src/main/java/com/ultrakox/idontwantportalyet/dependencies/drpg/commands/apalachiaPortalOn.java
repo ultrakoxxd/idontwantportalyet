@@ -5,8 +5,10 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.ultrakox.idontwantportalyet.config.commonConfig;
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
 
 public class apalachiaPortalOn {
     public apalachiaPortalOn(CommandDispatcher<CommandSourceStack> dispatcher){
@@ -14,6 +16,11 @@ public class apalachiaPortalOn {
                 .then(Commands.argument("state", BoolArgumentType.bool()).executes((command) -> {
                     commonConfig.isApalachiaPortalEnabled.set(BoolArgumentType.getBool(command, "state"));
                     commonConfig.SPEC.save();
+                    if(commonConfig.isApalachiaPortalEnabled.get()) {
+                        command.getSource().sendSystemMessage(Component.literal("Apalachia portal is now enabled").withStyle(ChatFormatting.AQUA));
+                    }else{
+                        command.getSource().sendSystemMessage(Component.literal("Apalachia portal is now disabled").withStyle(ChatFormatting.RED));
+                    }
                     return isEnabled(command.getSource());
                 }))
         )));

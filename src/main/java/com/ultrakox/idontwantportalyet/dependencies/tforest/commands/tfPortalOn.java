@@ -4,8 +4,10 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.ultrakox.idontwantportalyet.config.commonConfig;
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
 
 public class tfPortalOn {
     public tfPortalOn(CommandDispatcher<CommandSourceStack> dispatcher){
@@ -13,6 +15,11 @@ public class tfPortalOn {
             .then(Commands.argument("state", BoolArgumentType.bool()).executes((command) -> {
                 commonConfig.isTFPortalEnabled.set(BoolArgumentType.getBool(command, "state"));
                 commonConfig.SPEC.save();
+                if(commonConfig.isTFPortalEnabled.get()) {
+                    command.getSource().sendSystemMessage(Component.literal("Twilight portal is now enabled").withStyle(ChatFormatting.AQUA));
+                }else{
+                    command.getSource().sendSystemMessage(Component.literal("Twilight portal is now disabled").withStyle(ChatFormatting.RED));
+                }
                 return isEnabled(command.getSource());
             }))
     )));

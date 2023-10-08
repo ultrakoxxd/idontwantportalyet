@@ -8,9 +8,13 @@ import com.ultrakox.idontwantportalyet.config.commonConfig;
 import com.ultrakox.idontwantportalyet.IDontWantPortalYet;
 import com.ultrakox.idontwantportalyet.commands.portalOn;
 import com.mojang.logging.LogUtils;
+import com.ultrakox.idontwantportalyet.dependencies.deeperdarker.commands.othersidePortalOn;
+import com.ultrakox.idontwantportalyet.dependencies.deeperdarker.commands.othersidePortalTimer;
 import com.ultrakox.idontwantportalyet.dependencies.drpg.commands.*;
 import com.ultrakox.idontwantportalyet.dependencies.tforest.commands.tfPortalOn;
 import com.ultrakox.idontwantportalyet.dependencies.tforest.commands.tfPortalTimer;
+import com.ultrakox.idontwantportalyet.dependencies.undergarden.commands.ugrPortalOn;
+import com.ultrakox.idontwantportalyet.dependencies.undergarden.commands.ugrPortalTimer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -30,20 +34,35 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 import org.slf4j.Logger;
+import twilightforest.init.TFBlocks;
 
 @Mod.EventBusSubscriber(modid = IDontWantPortalYet.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class modEvents {
 
     private static final Logger LOGGER = LogUtils.getLogger();
+    private static final int PORTAL_SCAN_RANGE = 10;
     @SubscribeEvent
-    public static void deletePortal(BlockEvent.PortalSpawnEvent event){
-        if(!commonConfig.isPortalEnabled.get()){
-            event.setCanceled(true);
-            LOGGER.info("Nether portal is disabled");
+    public static void deletePortal(TickEvent.ServerTickEvent event){
+        if (!commonConfig.isPortalEnabled.get()) {
+            if (event.phase != TickEvent.Phase.START) return; // Wykonuj tylko w fazie startowej ticku serwera
 
-        } else  if(commonConfig.isPortalEnabled.get()) {
-            event.setCanceled(false);
-            LOGGER.info("Nether portal is enabled");
+            for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+                removePortalBlocks(player);
+
+            }
+        }
+    }
+
+    private static void removePortalBlocks(ServerPlayer player) {
+        for (int dx = -PORTAL_SCAN_RANGE; dx <= PORTAL_SCAN_RANGE; dx++) {
+            for (int dy = -PORTAL_SCAN_RANGE; dy <= PORTAL_SCAN_RANGE; dy++) {
+                for (int dz = -PORTAL_SCAN_RANGE; dz <= PORTAL_SCAN_RANGE; dz++) {
+                    if (player.level().getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == Blocks.NETHER_PORTAL) {
+                        player.level().setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
+                        LOGGER.debug("Nether portal is disabled");
+                    }
+                }
+            }
         }
     }
     @SubscribeEvent
@@ -55,7 +74,6 @@ public class modEvents {
             if (hitResult.getType() == BlockHitResult.Type.BLOCK) {
                 BlockState blockState = player.level().getBlockState(hitResult.getBlockPos());
                 if (blockState.getBlock() == Blocks.END_PORTAL_FRAME) {
-                    if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem() == Items.ENDER_EYE) {
                         event.setCanceled(true);
                         LOGGER.info("End portal is disabled");
                     } else if(commonConfig.isEndPortalEnabled.get()){
@@ -65,7 +83,6 @@ public class modEvents {
                 }
             }
         }
-    }
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event){
         //end portal timer
@@ -103,8 +120,8 @@ public class modEvents {
         new endPortalTimer(event.getDispatcher());
         new netherPortalTimer(event.getDispatcher());
         if (ModList.get().isLoaded("deeperdarker")) {
-            //  new othersidePortalOn(event.getDispatcher());
-            // new othersidePortalTimer(event.getDispatcher());
+            new othersidePortalOn(event.getDispatcher());
+            new othersidePortalTimer(event.getDispatcher());
         }
         if (ModList.get().isLoaded("twilightforest")) {
             new tfPortalOn(event.getDispatcher());
@@ -141,7 +158,10 @@ public class modEvents {
             new wildwoodPortalOn(event.getDispatcher());
             new wildwoodPortalTimer(event.getDispatcher());
 
-
+        if(ModList.get().isLoaded("undergarden")){
+            new ugrPortalOn(event.getDispatcher());
+            new ugrPortalTimer(event.getDispatcher());
+        }
             ConfigCommand.register(event.getDispatcher());
         }
 

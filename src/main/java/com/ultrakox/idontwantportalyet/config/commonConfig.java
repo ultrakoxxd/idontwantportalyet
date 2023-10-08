@@ -62,8 +62,15 @@ public class commonConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> isVetheaPortalEnabled;
     public static final ForgeConfigSpec.ConfigValue<Integer> vetheaPortalTimerInt;
     public static final ForgeConfigSpec.ConfigValue<String> vetheaPortalTimerAfter;
+    //undergarden
+    public static final ForgeConfigSpec.ConfigValue<Boolean> isUgrPortalEnabled;
+    public static final ForgeConfigSpec.ConfigValue<Integer> ugrPortalTimerInt;
+    public static final ForgeConfigSpec.ConfigValue<String> ugrPortalTimerAfter;
 
-
+    //aether
+    public static final ForgeConfigSpec.ConfigValue<Boolean> isAetherPortalEnabled;
+    public static final ForgeConfigSpec.ConfigValue<Integer> aetherPortalTimerInt;
+    public static final ForgeConfigSpec.ConfigValue<String> aetherPortalTimerAfter;
     static {
         BUILDER.push("Configs");
         isPortalEnabled = BUILDER.comment().define("Is portal enabled", true);
@@ -132,6 +139,18 @@ public class commonConfig {
         isVetheaPortalEnabled = BUILDER.define("Is Vethea portal enabled", true);
         vetheaPortalTimerInt = BUILDER.comment().define("Time to enable Vethea portal", -1);
         vetheaPortalTimerAfter = BUILDER.comment().define("Message after timer for Vethea reach 0","Vethea portal is now enabled!");
+
+        BUILDER.comment("Undergarden");
+
+        isUgrPortalEnabled = BUILDER.define("Is Undergarden portal enabled", true);
+        ugrPortalTimerInt = BUILDER.define("Time to enable Undergarden portal", -1);
+        ugrPortalTimerAfter = BUILDER.define("Message after timer for Undergarden rach 0", "Undergarden portal is now enabled!");
+
+        BUILDER.comment("Aether");
+
+        isAetherPortalEnabled = BUILDER.define("Is Aether portal enabled", true);
+        aetherPortalTimerInt = BUILDER.define("Time to enable Aether portal", -1);
+        aetherPortalTimerAfter = BUILDER.define("Message after timer for Aether reach 0", "Aether portal is now enabled!");
 
 
         BUILDER.pop();

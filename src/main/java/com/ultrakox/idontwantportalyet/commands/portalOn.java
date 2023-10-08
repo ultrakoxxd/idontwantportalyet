@@ -5,8 +5,10 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.sun.jdi.connect.Connector;
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
 
 public class portalOn {
     public portalOn(CommandDispatcher<CommandSourceStack> dispatcher){
@@ -14,6 +16,11 @@ public class portalOn {
                 .then(Commands.argument("state", BoolArgumentType.bool()).executes((command) -> {
                     commonConfig.isPortalEnabled.set(BoolArgumentType.getBool(command, "state"));
                     commonConfig.SPEC.save();
+                    if(commonConfig.isPortalEnabled.get()) {
+                        command.getSource().sendSystemMessage(Component.literal("Nether portal is now enabled").withStyle(ChatFormatting.AQUA));
+                    }else{
+                        command.getSource().sendSystemMessage(Component.literal("Nether portal is now disabled").withStyle(ChatFormatting.RED));
+                    }
                     return isEnabled(command.getSource());
                 }))
         )));
