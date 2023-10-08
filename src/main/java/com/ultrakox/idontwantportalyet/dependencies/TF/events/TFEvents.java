@@ -32,7 +32,7 @@ public class TFEvents {
                 for (int dz = -PORTAL_SCAN_RANGE; dz <= PORTAL_SCAN_RANGE; dz++) {
                     if (player.level.getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == TFBlocks.TWILIGHT_PORTAL.get()) {
                         player.level.setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
-                        LOGGER.info("Twilight portal is disabled");
+                        LOGGER.debug("Twilight portal is disabled");
                     }
                 }
             }

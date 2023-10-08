@@ -3,7 +3,6 @@ package com.ultrakox.idontwantportalyet.commands;
 import com.ultrakox.idontwantportalyet.config.common;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 

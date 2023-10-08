@@ -2,7 +2,6 @@ package com.ultrakox.idontwantportalyet.dependencies.undergarden.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.ultrakox.idontwantportalyet.config.common;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -18,8 +17,8 @@ public class ugrPortalOn {
         )));
     }
 
-    private int isEnabled(CommandSourceStack source) throws CommandSyntaxException {
-        if(Boolean.valueOf(String.valueOf(common.isUgrPortalEnabled)) == true){
+    private int isEnabled(CommandSourceStack ignoredSource){
+        if(Boolean.parseBoolean(String.valueOf(common.isUgrPortalEnabled))){
             return 1;
         }else{
             return 0;

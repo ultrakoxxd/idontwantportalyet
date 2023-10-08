@@ -3,7 +3,6 @@ package com.ultrakox.idontwantportalyet.dependencies.blueskies.commands;
 import com.ultrakox.idontwantportalyet.config.common;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 
@@ -18,8 +17,8 @@ public class ebPortalOn {
         )));
     }
 
-    private int isEnabled(CommandSourceStack source) throws CommandSyntaxException {
-        if(Boolean.valueOf(String.valueOf(common.isEverbrightPortalEnabled))){
+    private int isEnabled(CommandSourceStack ignoredSource){
+        if(Boolean.parseBoolean(String.valueOf(common.isEverbrightPortalEnabled))){
             return 1;
         }else{
             return 0;
