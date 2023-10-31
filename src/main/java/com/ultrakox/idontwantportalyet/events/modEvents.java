@@ -60,6 +60,7 @@ public class modEvents {
                     if (player.level().getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == Blocks.NETHER_PORTAL) {
                         player.level().setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                         LOGGER.debug("Nether portal is disabled");
+                        player.sendSystemMessage(Component.literal("This portal is disabled").withStyle(ChatFormatting.DARK_RED));
                     }
                 }
             }
@@ -76,6 +77,7 @@ public class modEvents {
                 if (blockState.getBlock() == Blocks.END_PORTAL_FRAME) {
                         event.setCanceled(true);
                         LOGGER.info("End portal is disabled");
+                        player.sendSystemMessage(Component.literal("This portal is disabled").withStyle(ChatFormatting.DARK_RED));
                     } else if(commonConfig.isEndPortalEnabled.get()){
                         event.setCanceled(false);
                         LOGGER.info("End portal is enabled");

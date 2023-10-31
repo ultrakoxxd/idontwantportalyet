@@ -32,6 +32,7 @@ public class drpgEvents {
                             if (player.level().getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == ForgeRegistries.BLOCKS.getValue(new ResourceLocation("divinerpg", "apalachia_portal"))) {
                                 player.level().setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                                 LOGGER.debug("Apalachia portal is disabled");
+                                player.sendSystemMessage(Component.literal("This portal is disabled").withStyle(ChatFormatting.DARK_RED));
                             }
                         }
                     }
@@ -51,6 +52,7 @@ public class drpgEvents {
                             if (player.level().getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == ForgeRegistries.BLOCKS.getValue(new ResourceLocation("divinerpg", "eden_portal"))) {
                                 player.level().setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                                 LOGGER.debug("Eden portal is disabled");
+                                player.sendSystemMessage(Component.literal("This portal is disabled").withStyle(ChatFormatting.DARK_RED));
                             }
                         }
                     }
@@ -70,6 +72,7 @@ public class drpgEvents {
                             if (player.level().getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == ForgeRegistries.BLOCKS.getValue(new ResourceLocation("divinerpg", "iceika_portal"))) {
                                 player.level().setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                                 LOGGER.debug("Iceika portal is disabled");
+                                player.sendSystemMessage(Component.literal("This portal is disabled").withStyle(ChatFormatting.DARK_RED));
                             }
                         }
                     }
@@ -89,6 +92,7 @@ public class drpgEvents {
                             if (player.level().getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == ForgeRegistries.BLOCKS.getValue(new ResourceLocation("divinerpg", "mortum_portal"))) {
                                 player.level().setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                                 LOGGER.debug("Mortum portal is disabled");
+                                player.sendSystemMessage(Component.literal("This portal is disabled").withStyle(ChatFormatting.DARK_RED));
                             }
                         }
                     }
@@ -109,6 +113,7 @@ public class drpgEvents {
                             if (player.level().getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == ForgeRegistries.BLOCKS.getValue(new ResourceLocation("divinerpg", "skythern_portal"))) {
                                 player.level().setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                                 LOGGER.debug("Skythern portal is disabled");
+                                player.sendSystemMessage(Component.literal("This portal is disabled").withStyle(ChatFormatting.DARK_RED));
                             }
                         }
                     }
@@ -128,6 +133,7 @@ public class drpgEvents {
                             if (player.level().getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == ForgeRegistries.BLOCKS.getValue(new ResourceLocation("divinerpg", "vethea_portal"))) {
                                 player.level().setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                                 LOGGER.debug("Vethea portal is disabled");
+                                player.sendSystemMessage(Component.literal("This portal is disabled").withStyle(ChatFormatting.DARK_RED));
                             }
                         }
                     }
@@ -147,6 +153,7 @@ public class drpgEvents {
                             if (player.level().getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == ForgeRegistries.BLOCKS.getValue(new ResourceLocation("divinerpg", "wildwood_portal"))) {
                                 player.level().setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                                 LOGGER.debug("Wildwood portal is disabled");
+                                player.sendSystemMessage(Component.literal("This portal is disabled").withStyle(ChatFormatting.DARK_RED));
                             }
                         }
                     }

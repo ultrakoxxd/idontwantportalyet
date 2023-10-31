@@ -41,6 +41,7 @@ public class ddEvents {
                     if (player.level().getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == DDBlocks.OTHERSIDE_PORTAL.get()) {
                         player.level().setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                         LOGGER.debug("Otherside portal is disabled");
+                        player.sendSystemMessage(Component.literal("This portal is disabled").withStyle(ChatFormatting.DARK_RED));
                     }
                 }
             }

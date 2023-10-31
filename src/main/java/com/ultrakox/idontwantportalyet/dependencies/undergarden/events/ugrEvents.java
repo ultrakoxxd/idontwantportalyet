@@ -9,14 +9,13 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.slf4j.Logger;
-import quek.undergarden.block.UndergardenPortalBlock;
 import quek.undergarden.registry.UGBlocks;
 
 public class ugrEvents {
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final int PORTAL_SCAN_RANGE = 10;
     @SubscribeEvent
-    public static void deletePortal(TickEvent.ServerTickEvent event){
+    public static void deleteUgrPortal(TickEvent.ServerTickEvent event){
         if (!commonConfig.isUgrPortalEnabled.get()) {
             if (event.phase != TickEvent.Phase.START) return;
 
@@ -34,6 +33,7 @@ public class ugrEvents {
                     if (player.level().getBlockState(player.blockPosition().offset(dx, dy, dz)).getBlock() == UGBlocks.UNDERGARDEN_PORTAL.get()) {
                         player.level().setBlockAndUpdate(player.blockPosition().offset(dx, dy, dz), Blocks.AIR.defaultBlockState());
                         LOGGER.debug("Undegarden portal is disabled");
+                        player.sendSystemMessage(Component.literal("This portal is disabled").withStyle(ChatFormatting.DARK_RED));
                     }
                 }
             }
