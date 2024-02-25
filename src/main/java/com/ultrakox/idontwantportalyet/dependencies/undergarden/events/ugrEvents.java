@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.slf4j.Logger;
 import quek.undergarden.registry.UGBlocks;
@@ -56,5 +57,15 @@ public class ugrEvents {
                 }
             }
         }
+    }
+    @SubscribeEvent
+    public static void portalAvancementMade(AdvancementEvent.AdvancementEarnEvent event) {
+
+        if (event.getAdvancement().getId().toString().equals(commonConfig.ugrPortalAdvancement.get())) {
+            commonConfig.isUgrPortalEnabled.set(true);
+            LOGGER.debug("Undergarden portal is enabled advancement made" + event.getAdvancement().toString());
+            event.getEntity().sendSystemMessage(Component.literal("Undergarden portal is now enabled!").withStyle(ChatFormatting.AQUA));
+        }
+
     }
 }

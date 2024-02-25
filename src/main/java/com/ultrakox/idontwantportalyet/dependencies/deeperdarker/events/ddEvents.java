@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import org.slf4j.Logger;
@@ -65,5 +66,14 @@ public class ddEvents {
             }
         }
     }
+    @SubscribeEvent
+    public static void portalAvancementMade(AdvancementEvent.AdvancementEarnEvent event) {
 
+        if (event.getAdvancement().getId().toString().equals(commonConfig.othersidePortalAdvancement.get())) {
+            commonConfig.isOthersidePortalEnabled.set(true);
+            LOGGER.debug("Otherside portal is enabled advancement made" + event.getAdvancement().toString());
+            event.getEntity().sendSystemMessage(Component.literal("Otherside portal is now enabled!").withStyle(ChatFormatting.AQUA));
+        }
+
+    }
 }

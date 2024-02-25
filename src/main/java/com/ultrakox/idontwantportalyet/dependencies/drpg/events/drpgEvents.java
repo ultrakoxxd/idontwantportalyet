@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
@@ -256,4 +257,38 @@ public class drpgEvents {
 
     }
 
+    @SubscribeEvent
+    public static void portalAvancementMade(AdvancementEvent.AdvancementEarnEvent event) {
+
+        if (event.getAdvancement().getId().toString().equals(commonConfig.iceikaPortalAdvancement.get())) {
+            commonConfig.isIceikaPortalEnabled.set(true);
+            LOGGER.debug("Iceika portal is enabled advancement made" + event.getAdvancement().toString());
+            event.getEntity().sendSystemMessage(Component.literal("Iceika portal is now enabled!").withStyle(ChatFormatting.AQUA));
+        }
+        if (event.getAdvancement().getId().toString().equals(commonConfig.edenPortalAdvancement.get())) {
+            commonConfig.isEdenPortalEnabled.set(true);
+            LOGGER.debug("Eden portal is enabled advancement made" + event.getAdvancement().toString());
+            event.getEntity().sendSystemMessage(Component.literal("Eden portal is now enabled!").withStyle(ChatFormatting.AQUA));
+        }if (event.getAdvancement().getId().toString().equals(commonConfig.apalachiaPortalAdvancement.get())) {
+            commonConfig.isApalachiaPortalEnabled.set(true);
+            LOGGER.debug("Apalachia portal is enabled advancement made" + event.getAdvancement().toString());
+            event.getEntity().sendSystemMessage(Component.literal("Apalachia portal is now enabled!").withStyle(ChatFormatting.AQUA));
+        }if (event.getAdvancement().getId().toString().equals(commonConfig.mortumPortalAdvancement.get())) {
+            commonConfig.isMortumPortalEnabled.set(true);
+            LOGGER.debug("Mortum portal is enabled advancement made" + event.getAdvancement().toString());
+            event.getEntity().sendSystemMessage(Component.literal("Mortum portal is now enabled!").withStyle(ChatFormatting.AQUA));
+        }if (event.getAdvancement().getId().toString().equals(commonConfig.skythernPortalAdvancement.get())) {
+            commonConfig.isSkythernPortalEnabled.set(true);
+            LOGGER.debug("Skythern portal is enabled advancement made" + event.getAdvancement().toString());
+            event.getEntity().sendSystemMessage(Component.literal("Skythern portal is now enabled!").withStyle(ChatFormatting.AQUA));
+        }if (event.getAdvancement().getId().toString().equals(commonConfig.vetheaPortalAdvancement.get())) {
+            commonConfig.isVetheaPortalEnabled.set(true);
+            LOGGER.debug("Vethea portal is enabled advancement made" + event.getAdvancement().toString());
+            event.getEntity().sendSystemMessage(Component.literal("Vethea portal is now enabled!").withStyle(ChatFormatting.AQUA));
+        }if (event.getAdvancement().getId().toString().equals(commonConfig.wildwoodPortalAdvancement.get())) {
+            commonConfig.isWildwoodPortalEnabled.set(true);
+            LOGGER.debug("Wildwood portal is enabled advancement made" + event.getAdvancement().toString());
+            event.getEntity().sendSystemMessage(Component.literal("Wildwood portal is now enabled!").withStyle(ChatFormatting.AQUA));
+        }
+    }
 }

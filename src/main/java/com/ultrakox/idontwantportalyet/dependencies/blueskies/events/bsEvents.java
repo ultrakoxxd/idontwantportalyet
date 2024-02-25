@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import org.slf4j.Logger;
@@ -94,6 +95,20 @@ public class bsEvents {
                     player.sendSystemMessage(Component.literal(commonConfig.everdawnPortalTimerAfter.get()).withStyle(ChatFormatting.AQUA));
                 }
             }
+        }
+    }
+    @SubscribeEvent
+    public static void portalAvancementMade(AdvancementEvent.AdvancementEarnEvent event) {
+
+        if (event.getAdvancement().getId().toString().equals(commonConfig.everbrightPortalAdvancement.get())) {
+            commonConfig.isEverbrightPortalEnabled.set(true);
+            LOGGER.debug("Everbright portal is enabled advancement made" + event.getAdvancement().toString());
+            event.getEntity().sendSystemMessage(Component.literal("Everbright portal is now enabled!").withStyle(ChatFormatting.AQUA));
+        }
+        if (event.getAdvancement().getId().toString().equals(commonConfig.everdawnPortalAdvancement.get())) {
+            commonConfig.isEverdawnPortalEnabled.set(true);
+            LOGGER.debug("Everdawn portal is enabled advancement made" + event.getAdvancement().toString());
+            event.getEntity().sendSystemMessage(Component.literal("Everdawn portal is now enabled!").withStyle(ChatFormatting.AQUA));
         }
     }
 }

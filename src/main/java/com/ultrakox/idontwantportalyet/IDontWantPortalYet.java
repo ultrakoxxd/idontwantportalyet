@@ -2,8 +2,13 @@ package com.ultrakox.idontwantportalyet;
 
 import com.mojang.logging.LogUtils;
 import com.ultrakox.idontwantportalyet.config.commonConfig;
+import com.ultrakox.idontwantportalyet.dependencies.aerialhell.events.ahEvents;
+import com.ultrakox.idontwantportalyet.dependencies.aether.events.aetherEvents;
+import com.ultrakox.idontwantportalyet.dependencies.blueskies.events.bsEvents;
 import com.ultrakox.idontwantportalyet.dependencies.deeperdarker.events.ddEvents;
 import com.ultrakox.idontwantportalyet.dependencies.drpg.events.drpgEvents;
+import com.ultrakox.idontwantportalyet.dependencies.exotelcraft.events.ecEvents;
+import com.ultrakox.idontwantportalyet.dependencies.gaia.events.gaiaEvents;
 import com.ultrakox.idontwantportalyet.dependencies.tforest.events.tfEvents;
 import com.ultrakox.idontwantportalyet.dependencies.undergarden.events.ugrEvents;
 import net.minecraft.client.Minecraft;
@@ -52,18 +57,44 @@ public class IDontWantPortalYet {
         MinecraftForge.EVENT_BUS.register(this);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, commonConfig.SPEC, "IDontWantPortalYet-common.toml");
-        if(ModList.get().isLoaded("twilightforest")){
-            MinecraftForge.EVENT_BUS.register(tfEvents.class);
+        if(ModList.get().isLoaded("aerialhell")){
+            MinecraftForge.EVENT_BUS.register(ahEvents.class);
+            LOGGER.info("dependency found: aerial hell");
         }
-        if(ModList.get().isLoaded("divinerpg")){
-            MinecraftForge.EVENT_BUS.register(drpgEvents.class);
+        if(ModList.get().isLoaded("aether")){
+            MinecraftForge.EVENT_BUS.register(aetherEvents.class);
+            LOGGER.info("dependency found: aether");
+        }
+        if(ModList.get().isLoaded("blue_skies")){
+            MinecraftForge.EVENT_BUS.register(bsEvents.class);
+            LOGGER.info("dependency found: blue skies");
         }
         if(ModList.get().isLoaded("deeperdarker")){
             MinecraftForge.EVENT_BUS.register(ddEvents.class);
+            LOGGER.info("dependency found: deeper and darker");
+        }
+        if(ModList.get().isLoaded("divinerpg")){
+            MinecraftForge.EVENT_BUS.register(drpgEvents.class);
+            LOGGER.info("dependency found: divinerpg");
+        }
+        if(ModList.get().isLoaded("twilightforest")){
+            MinecraftForge.EVENT_BUS.register(tfEvents.class);
+            LOGGER.info("dependency found: twilightforest");
         }
         if(ModList.get().isLoaded("undergarden")){
             MinecraftForge.EVENT_BUS.register(ugrEvents.class);
+            LOGGER.info("dependency found: undergarden");
         }
+        if(ModList.get().isLoaded("exotelcraft")){
+            MinecraftForge.EVENT_BUS.register(ecEvents.class);
+            LOGGER.info("dependency found: exotelcraft");
+        }
+        if(ModList.get().isLoaded("gaiadimension")){
+            MinecraftForge.EVENT_BUS.register(gaiaEvents.class);
+            LOGGER.info("dependency found: gaia dimension");
+        }
+
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
